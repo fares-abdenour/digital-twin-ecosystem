@@ -2,6 +2,10 @@ import json
 import psycopg2
 from datetime import datetime
 import paho.mqtt.client as mqtt
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- CONFIGURATION CORES ---
 MQTT_BROKER = "localhost"
@@ -11,9 +15,9 @@ MQTT_TOPIC = "campus/sensors/#"
 DB_PARAMS = {
     "host": "127.0.0.1",
     "port": 5432,
-    "database": "smart_infrastructure_db",
-    "user": "admin_fares",
-    "password": "SuperSecurePassword2026"
+    "database": os.getenv("DB_NAME"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD")
 }
 
 # --- DATABASE PERSISTENCE LOGIC ---
