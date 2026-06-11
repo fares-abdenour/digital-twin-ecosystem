@@ -15,6 +15,15 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
+  mqtt_broker:
+    image: eclipse-mosquitto:2.0
+    container_name: digital_twin_mqtt
+    restart: always
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
 volumes:
   pgdata:
     driver: local
