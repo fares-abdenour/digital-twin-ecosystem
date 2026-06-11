@@ -6,9 +6,9 @@ services:
     container_name: digital_twin_postgres
     restart: always
     environment:
-      POSTGRES_USER: admin_fares
-      POSTGRES_PASSWORD: SuperSecurePassword2026
-      POSTGRES_DB: smart_infrastructure_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
@@ -33,9 +33,9 @@ services:
       - "8000:8000"
     environment:
       - DB_HOST=smart_twin_db  # Points to the database service name above
-      - DB_NAME=smart_infrastructure_db
-      - DB_USER=admin_fares
-      - DB_PASSWORD=SuperSecurePassword2026
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - smart_twin_db
       
