@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  smart_twin_db:
+    image: postgres:15-alpine
+    container_name: digital_twin_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin_fares
+      POSTGRES_PASSWORD: SuperSecurePassword2026
+      POSTGRES_DB: smart_infrastructure_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  pgdata:
+    driver: local
